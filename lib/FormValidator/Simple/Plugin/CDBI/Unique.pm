@@ -7,7 +7,7 @@ use SQL::Abstract;
 use FormValidator::Simple::Exception;
 use FormValidator::Simple::Constants;
 
-our $VERSION = '0.01_02';
+our $VERSION = '0.02';
 
 sub CDBI_UNIQUE {
 
@@ -21,6 +21,11 @@ sub CDBI_UNIQUE {
     }
 
     my $table = shift @$args;
+    unless ( scalar(@$params) == scalar(@$args) ) {
+        FormValidator::Simple::Exception->throw(
+        qq/Validation CDBI_UNIQUE: number of keys and validation arguments aren't same./
+        );
+    }
     if ( $class->options->{cdbi_base_class} ) {
         $table = $class->options->{cdbi_base_class}."::".$table;
     }
@@ -92,6 +97,7 @@ FormValidator::Simple::Plugin::CDBI::Unique - unique check for CDBI
     ] );
 
     # check multiple columns including '!=' check
+    # set "!" as prefix for key-name
     FormValidator::Simple->check( $q => [
         { unique => [qw/id name email/] } => [ [qw/CDBI_UNIQUE Table !id name mail/] ]
     ] );
