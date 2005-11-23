@@ -5,7 +5,7 @@ WriteMakefile(
     NAME              => 'FormValidator::Simple::Plugin::CDBI::Unique',
     VERSION_FROM      => 'lib/FormValidator/Simple/Plugin/CDBI/Unique.pm', # finds $VERSION
     PREREQ_PM         => {
-        FormValidator::Simple => 0.07,
+        FormValidator::Simple => 0.11,
         SQL::Abstract => 0,
         Class::DBI => 0.96,
     }, # e.g., Module::Name => 1.1

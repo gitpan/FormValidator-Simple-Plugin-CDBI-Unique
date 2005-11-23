@@ -7,7 +7,7 @@ use SQL::Abstract;
 use FormValidator::Simple::Exception;
 use FormValidator::Simple::Constants;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub CDBI_UNIQUE {
 
@@ -109,8 +109,8 @@ FormValidator::Simple::Plugin::CDBI::Unique - unique check for CDBI
     ] );
 
     # you can set cdbi_base_class in option.
-    my $valid = FormValidator::Simple->new( { cdbi_base_class => 'MyProj::Model' } );
-    $valid->check( $q => [
+    FormValidator::Simple->set_option( cdbi_base_class => 'MyProj::Model' );
+    FormValidator::Simple->check( $q => [
         name => [ [qw/CDBI_UNIQUE User name/] ],
     ] );
 
